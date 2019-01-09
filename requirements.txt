@@ -1,0 +1,7 @@
+flask
+Flask-SQLAlchemy
+psycopg2==2.7.5
+pandas
+sqlacodegen
+flask-marshmallow
+marshmallow-sqlalchemy
