@@ -1,10 +1,8 @@
 from flask import Flask
-from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
-ma = Marshmallow(app)
 
 class Despesas(db.Model):
     id_despesa_detalhe = db.Column(db.Text, primary_key=True)
@@ -30,7 +28,3 @@ class Despesas(db.Model):
     ds_modalidade_lic = db.Column(db.Text)
     ds_elemento = db.Column(db.Text)
     historico_despesa = db.Column(db.Text)
-
-class DespesasSchema(ma.ModelSchema):
-    class Meta:
-        model = Despesas

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<script>
+    function myFunction(x){
+        alert(x.id);
+    }
+</script>
+<div class="container-fluid">
+
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Try Other</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Bootstrap 4.0.0 Snippet by pradeep330</h6>
+              <p class="card-text">You can also try different version of Bootstrap V4 side menu. Click below link to view all Bootstrap Menu versions.</p>
+              <a href="https://bootsnipp.com/pradeep330" class="card-link">link</a>
+              <a href="http://websitedesigntamilnadu.com" class="card-link">Another link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+                <table class="table table-hover" id="despesas">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Municipio</th>
+                            <th scope="col">Orgão</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for despesa in despesas %}
+                        <tr id={{ despesa.id_despesa_detalhe }} onclick="myFunction(this)">
+                            <th scope="row">{{ despesa.id_despesa_detalhe }}</th>
+                            <td> {{despesa.ds_municipio }} </td>
+                            <td> {{ despesa.ds_orgao }} </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+{% endblock %}
