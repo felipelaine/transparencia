@@ -45,6 +45,9 @@
        <label class="label label-success">Pie Chart</label>
       <div id="pie-chart" ></div>
     </div>
+    <h1>{{ title }}</h1>
+
+    <canvas id="chart" width="600" height="400"></canvas>
 
 </div>
 <style>
@@ -56,11 +59,39 @@
 Morris.Donut({
   element: 'pie-chart',
   data : [
-    {label: "Teste", value: 30},
-    {label: "Allies", value: 15},
-    {label: "Enemies", value: 45},
-    {label: "Neutral", value: 10}
+        {% for despesa in despesas %}
+          {
+            value: {{despesa.vl_despesa}},
+            label: "{{despesa.ds_funcao_governo}}"
+          },
+        {% endfor %}
   ]
 });
+
 </script>
+<script>
+        var dynamicColors = function() {
+            var r = Math.floor(Math.random() * 255);
+            var g = Math.floor(Math.random() * 255);
+            var b = Math.floor(Math.random() * 255);
+            return "rgb(" + r + "," + g + "," + b + ")";
+            };
+
+      var pieData = [
+            {% for despesa in despesas %}
+              {
+                value: {{despesa.vl_despesa}},
+                label: "{{despesa.ds_funcao_governo}}",
+                color : dynamicColors()
+              },
+            {% endfor %}
+      ]
+      // get bar chart canvas
+      var mychart = document.getElementById("chart").getContext("2d");
+      steps = 10
+      max = {{ max }}
+      // draw pie chart
+      new Chart(document.getElementById("chart").getContext("2d")).Pie(pieData);
+</script>
+
 {% endblock %}
